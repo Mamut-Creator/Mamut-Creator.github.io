@@ -11,3 +11,9 @@ Escribe bloques con tres acentos graves seguidos del lenguaje (`bash`, `python`,
 Usa `status: resuelta` para incluir la máquina en el carrusel, navegable con flechas, teclado y desplazamiento táctil. No tiene avance automático. `demo: true` identifica una entrada ficticia; cámbialo a `false` al publicar una resolución propia. Los enlaces actuales son los catálogos de las plataformas porque las máquinas de muestra son ficticias.
 
 Spotlight es el componente oficial de Aceternity, renderizado por React en el servidor. El diseño respeta movimiento reducido. Puedes iniciar el sitio tanto desde esta carpeta como desde la carpeta principal: `npm install` y `npm run dev`. Si PowerShell bloquea `npm.ps1`, usa `npm.cmd install` y `npm.cmd run dev`.
+
+## Tipografías y movimiento
+
+Las fuentes se sirven localmente desde `public/fonts/`: Maple Mono para texto e interfaz, JetBrains Mono para código y WindSong para cursiva. Sus licencias están en la misma carpeta. Los estilos están en `src/styles/motion.css`.
+
+El título usa `Typewriter.astro` y la animación se controla en `PageMotion.astro`, junto con las apariciones al desplazarse. El contenido sigue visible sin JavaScript. Si el visitante pide movimiento reducido, se muestra el texto completo y se desactivan las animaciones.

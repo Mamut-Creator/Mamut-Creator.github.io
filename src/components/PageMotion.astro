@@ -1,0 +1,20 @@
+<script>
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)');
+const running:Animation[]=[];
+const typewriters=[...document.querySelectorAll<HTMLElement>('[data-typewriter]')];
+// El texto completo ya está en el HTML. Sin JavaScript permanece visible.
+if(!reduceMotion.matches){
+ for(const block of typewriters){
+  const chars=[...block.querySelectorAll<HTMLElement>('.type-char')];block.classList.add('is-typing');
+  const animations=chars.map((char,index)=>{
+   const animation=char.animate([{opacity:0},{opacity:1}],{duration:1,delay:100+index*23,fill:'backwards'});running.push(animation);
+   animation.onfinish=()=>{block.querySelector('.is-current')?.classList.remove('is-current');char.classList.add('is-current');if(index===chars.length-1){block.classList.remove('is-typing');char.classList.remove('is-current')}};return animation;
+  });
+ }
+ const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(!entry.isIntersecting)return;const node=entry.target as HTMLElement;const delay=Number(node.dataset.revealDelay||0);const animation=node.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'translateY(0)'}],{duration:380,delay,easing:'cubic-bezier(.2,.7,.2,1)',fill:'backwards'});running.push(animation);animation.onfinish=()=>node.classList.add('is-revealed');observer.unobserve(node)});
+ },{threshold:.08});
+ document.querySelectorAll<HTMLElement>('.solved-heading,.machine-card,.archive-top,.entry,.article-heading,.reading-layout,.about,.hero .lead,.hero .explore').forEach((node,index)=>{node.classList.add('reveal-ready');node.dataset.revealDelay=String(node.classList.contains('machine-card')?(index%3)*55:0);observer.observe(node)});
+ reduceMotion.addEventListener('change',()=>{if(reduceMotion.matches){running.forEach(animation=>animation.cancel());typewriters.forEach(block=>block.classList.remove('is-typing'));observer.disconnect()}},{once:true});
+}
+</script>

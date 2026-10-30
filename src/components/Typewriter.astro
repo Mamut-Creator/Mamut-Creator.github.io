@@ -1,0 +1,4 @@
+---
+const {lines} = Astro.props as {lines:string[]};
+---
+<span class="typewriter" data-typewriter><span class="sr-only">{lines.join(' ')}</span><span aria-hidden="true">{lines.map((line,index)=><span class:list={['type-line',{'handwritten':index===1}]}>{Array.from(line).map(char=><span class="type-char">{char}</span>)}</span>)}</span></span>
