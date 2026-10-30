@@ -5,14 +5,11 @@ Web: https://mamut-creator.github.io/
 
 La primera publicación ya está configurada. El remoto `origin` apunta a GitHub y `main` publica automáticamente. La carpeta del repositorio en este equipo es `bitacora-writeups/`.
 
-## Primera publicación
+## Flujo de trabajo
 
-El repositorio debe contener directamente `package.json`, `src/`, `public/` y `.github/`. En este equipo, su carpeta es `bitacora-writeups/`, que ya tiene su propio Git. No subas la carpeta contenedora con `node_modules` o los ZIP de las fuentes.
+Jorge aporta los write-ups y las capturas. Codex prepara y revisa los cambios solicitados, realiza las comprobaciones, guarda los commits y gestiona las subidas a GitHub. Cada actualización autorizada se publica mediante el workflow del repositorio; no hace falta subir archivos generados manualmente.
 
-1. Crear el repositorio `Mamut-Creator.github.io` sin README ni plantilla inicial.
-2. En Settings → Pages, elegir **GitHub Actions** como Source.
-3. Conectar el repositorio local a GitHub y subir `main`.
-4. Comprobar en Actions el resultado de **Check and publish portfolio**. La URL estará disponible cuando finalice el trabajo `deploy`.
+El destino de publicación es GitHub Pages. No se utiliza la configuración de alojamientos anteriores. Los cambios no solicitados y los archivos ajenos a la actualización se conservan.
 
 ## Añadir una máquina
 

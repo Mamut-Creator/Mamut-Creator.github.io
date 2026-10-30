@@ -3,3 +3,4 @@ dist/
 .astro/
 outputs/
 .env*
+.openai/
