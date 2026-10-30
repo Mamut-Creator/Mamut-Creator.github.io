@@ -1,7 +1,9 @@
 # GitHub Pages y actualizaciones
 
-Repositorio previsto: `https://github.com/Mamut-Creator/Mamut-Creator.github.io`
-Web prevista: `https://mamut-creator.github.io/`
+Repositorio: https://github.com/Mamut-Creator/Mamut-Creator.github.io
+Web: https://mamut-creator.github.io/
+
+La primera publicación ya está configurada. El remoto `origin` apunta a GitHub y `main` publica automáticamente. La carpeta del repositorio en este equipo es `bitacora-writeups/`.
 
 ## Primera publicación
 
