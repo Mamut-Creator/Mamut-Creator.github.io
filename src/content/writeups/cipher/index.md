@@ -6,6 +6,10 @@ os: Linux
 difficulty: Media
 tags: [Servicios, PrivEsc]
 summary: Servicios expuestos y permisos que cuentan una historia.
+cover: images/cover.svg
+machineUrl: https://tryhackme.com/
+status: resuelta
+demo: true
 ---
 ## Reconocimiento
 

@@ -6,6 +6,10 @@ os: Windows
 difficulty: Difícil
 tags: [Active Directory, Kerberos]
 summary: Notas de exploración de un entorno de dominio.
+cover: images/cover.svg
+machineUrl: https://app.hackthebox.com/machines
+status: resuelta
+demo: true
 ---
 ## Reconocimiento
 

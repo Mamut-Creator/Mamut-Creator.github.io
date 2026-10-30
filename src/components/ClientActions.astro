@@ -1,0 +1,10 @@
+<script>
+document.querySelectorAll<HTMLButtonElement>('.copy-code').forEach(button=>{
+ button.addEventListener('click',async()=>{
+  const code=button.closest('.code-terminal')?.querySelector('code');if(!code)return;
+  try{await navigator.clipboard.writeText(code.textContent||'');button.textContent='Copiado';button.setAttribute('aria-label','Código copiado');}
+  catch{button.textContent='Selecciona y copia';const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(code);selection?.removeAllRanges();selection?.addRange(range);}
+  window.setTimeout(()=>{button.textContent='Copiar';button.setAttribute('aria-label','Copiar código')},2200);
+ });
+});
+</script>

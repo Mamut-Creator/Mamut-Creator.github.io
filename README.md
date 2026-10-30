@@ -2,8 +2,12 @@
 
 Desarrollo: `npm install` y `npm run dev`. Producción: `npm run build`. Vista previa: `npm run preview`.
 
-Para añadir una máquina, copia un archivo de `src/content/writeups/` y cambia el frontmatter. Usa un slug único en minúsculas. Las dificultades son `Fácil`, `Media` y `Difícil`. Escribe el artículo en Markdown; los títulos de nivel 2 forman el índice. Cada archivo genera una URL propia en `/writeups/slug`.
+Para añadir una máquina, copia `templates/maquina/` a `src/content/writeups/nombre/`. Cambia el frontmatter de `index.md`. El slug debe ser único, en minúsculas y sin espacios. Las dificultades son `Fácil`, `Media` y `Difícil`. Cada carpeta genera una URL propia en `/writeups/slug`. Los títulos `##` forman el índice automáticamente.
 
-Guarda capturas en `public/images/` y usa `![Descripción](/images/captura.png)`. Los bloques de código tienen resaltado de sintaxis. La búsqueda filtra nombre, plataforma, sistema y etiquetas; `/` enfoca el buscador.
+Guarda todas las imágenes en la carpeta `images/` de la máquina. Inclúyelas con `![Descripción](./images/captura.png)`. Para una imagen con enlace: `[![Descripción](./images/captura.png)](https://destino.example)`. Astro procesa las imágenes locales. El campo `cover` indica una portada relativa a la carpeta de la máquina y `machineUrl` enlaza con su página en la plataforma. Las portadas del carrusel abren el write-up; la portada del artículo y el enlace «Ir a la máquina» abren `machineUrl`.
 
-Las tres máquinas son ficticias. Al añadir contenido real, retira los avisos de ejemplo del índice, artículo y página Acerca. Spotlight es el componente oficial de Aceternity, renderizado por React en el servidor sin hidratar un runtime en el cliente. El diseño respeta movimiento reducido.
+Escribe bloques con tres acentos graves seguidos del lenguaje (`bash`, `python`, `powershell`, `javascript`, `json` o `text` para salida de herramientas). Todos se muestran en una terminal visual con resaltado y botón Copiar. Se representan como documentación: no ejecutan los comandos. La búsqueda filtra nombre, plataforma, sistema y etiquetas; `/` enfoca el buscador.
+
+Usa `status: resuelta` para incluir la máquina en el carrusel, navegable con flechas, teclado y desplazamiento táctil. No tiene avance automático. `demo: true` identifica una entrada ficticia; cámbialo a `false` al publicar una resolución propia. Los enlaces actuales son los catálogos de las plataformas porque las máquinas de muestra son ficticias.
+
+Spotlight es el componente oficial de Aceternity, renderizado por React en el servidor. El diseño respeta movimiento reducido. Puedes iniciar el sitio tanto desde esta carpeta como desde la carpeta principal: `npm install` y `npm run dev`. Si PowerShell bloquea `npm.ps1`, usa `npm.cmd install` y `npm.cmd run dev`.

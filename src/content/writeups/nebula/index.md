@@ -6,6 +6,10 @@ os: Linux
 difficulty: Fácil
 tags: [Web, Enumeración]
 summary: De la enumeración web al acceso inicial.
+cover: images/cover.svg
+machineUrl: https://app.hackthebox.com/machines
+status: resuelta
+demo: true
 ---
 ## Reconocimiento
 
@@ -20,6 +24,15 @@ Anota los puertos abiertos, las versiones y las primeras hipótesis. Un resultad
 ## Enumeración web
 
 Documenta las rutas y funcionalidades que encontraste. Añade las capturas junto a la explicación correspondiente.
+
+[![Captura ilustrativa de enumeración](./images/enumeracion.svg)](https://app.hackthebox.com/machines)
+
+```python
+# Ejemplo de código con resaltado de sintaxis
+servicios = ["http", "ssh"]
+for servicio in servicios:
+    print(f"Servicio identificado: {servicio}")
+```
 
 ## Acceso inicial
 
