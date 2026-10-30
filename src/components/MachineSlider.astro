@@ -1,11 +1,12 @@
 ---
+import { withBase } from '../lib/paths.mjs';
 const { posts } = Astro.props;
 const solved = posts.filter((p:any)=>p.frontmatter.status==='resuelta');
 ---
 {solved.length > 0 && <section class="solved shell" aria-label="Máquinas resueltas" aria-roledescription="carrusel">
   <div class="solved-heading"><div><p class="eyebrow">LA COLECCIÓN</p><h2>Máquinas resueltas</h2></div><div class="slider-controls"><button type="button" data-slide="prev" aria-label="Máquinas anteriores">←</button><button type="button" data-slide="next" aria-label="Máquinas siguientes">→</button></div></div>
   <div class="machine-track" tabindex="0" aria-label="Desliza para ver todas las máquinas">
-    {solved.map(({frontmatter:m,cover}:any)=><article class="machine-card"><a class="machine-cover" href={'/writeups/'+m.slug} aria-label={'Leer write-up de '+m.title}>{cover && <img src={cover} alt={'Portada de '+m.title} loading="lazy" width="400" height="280"/>}<span class="cover-caption">Leer write-up ↗</span></a><div class="card-info"><a href={'/writeups/'+m.slug}><h3>{m.title}</h3></a><span>{m.difficulty}</span><p>{m.platform} · {m.os}{m.demo && ' · Ejemplo'}</p>{m.machineUrl && <a class="platform-link" href={m.machineUrl} target="_blank" rel="noopener noreferrer">Ir a la máquina ↗</a>}</div></article>)}
+    {solved.map(({frontmatter:m,cover}:any)=><article class="machine-card"><a class="machine-cover" href={withBase('/writeups/'+m.slug+'/')} aria-label={'Leer write-up de '+m.title}>{cover && <img src={cover} alt={'Portada de '+m.title} loading="lazy" width="400" height="280"/>}<span class="cover-caption">Leer write-up ↗</span></a><div class="card-info"><a href={withBase('/writeups/'+m.slug+'/')}><h3>{m.title}</h3></a><span>{m.difficulty}</span><p>{m.platform} · {m.os}{m.demo && ' · Ejemplo'}</p>{m.machineUrl && <a class="platform-link" href={m.machineUrl} target="_blank" rel="noopener noreferrer">Ir a la máquina ↗</a>}</div></article>)}
   </div><p class="slider-status" aria-live="polite"></p>
 </section>}
 <script>

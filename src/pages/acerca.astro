@@ -1,5 +1,6 @@
 ---
+import { withBase } from '../lib/paths.mjs';
 import Layout from '../layouts/Layout.astro';
 import { site } from '../lib/site';
 ---
-<Layout title="Acerca — Bitácora"><section class="about shell"><p class="eyebrow">ACERCA DEL PROYECTO</p><h1>Aprender.<br/>Y dejar constancia.</h1><div class="prose"><p>Soy {site.author}. Bitácora es mi espacio personal para documentar lo que aprendo resolviendo máquinas de ciberseguridad.</p><p>En cada entrada quiero recoger las pistas, las decisiones y los errores que forman parte del proceso. El objetivo es poder volver a mis notas y compartir el razonamiento con quien esté aprendiendo también.</p></div><a class="explore" href="/#archivo">Volver al archivo <span>↗</span></a></section></Layout>
+<Layout title="Acerca — Bitácora"><section class="about shell"><p class="eyebrow">ACERCA DEL PROYECTO</p><h1>Aprender.<br/>Y dejar constancia.</h1><div class="prose"><p>Soy {site.author}. Bitácora es mi espacio personal para documentar lo que aprendo resolviendo máquinas de ciberseguridad.</p><p>En cada entrada quiero recoger las pistas, las decisiones y los errores que forman parte del proceso. El objetivo es poder volver a mis notas y compartir el razonamiento con quien esté aprendiendo también.</p></div><a class="explore" href={withBase('/#archivo')}>Volver al archivo <span>↗</span></a></section></Layout>

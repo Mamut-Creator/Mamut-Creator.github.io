@@ -1,8 +1,10 @@
 # Bitácora · Astro + Aceternity UI
 
+Portfolio de Jorge Romero. Para publicar en GitHub Pages y actualizarlo, consulta [GITHUB.md](GITHUB.md).
+
 Desarrollo: `npm install` y `npm run dev`. Producción: `npm run build`. Vista previa: `npm run preview`.
 
-Para añadir una máquina, copia `templates/maquina/` a `src/content/writeups/nombre/`. Cambia el frontmatter de `index.md`. El slug debe ser único, en minúsculas y sin espacios. Las dificultades son `Fácil`, `Media` y `Difícil`. Cada carpeta genera una URL propia en `/writeups/slug`. Los títulos `##` forman el índice automáticamente.
+Para añadir una máquina, ejecuta `npm run new:machine -- nombre-maquina "Título"` o copia `templates/maquina/` a `src/content/writeups/nombre/`. Cambia el frontmatter de `index.md`. El slug debe ser único, en minúsculas y sin espacios. Las dificultades son `Fácil`, `Media` y `Difícil`. Cada carpeta genera una URL propia en `/writeups/slug`. Los títulos `##` forman el índice automáticamente.
 
 Guarda todas las imágenes en la carpeta `images/` de la máquina. Inclúyelas con `![Descripción](./images/captura.png)`. Para una imagen con enlace: `[![Descripción](./images/captura.png)](https://destino.example)`. Astro procesa las imágenes locales. El campo `cover` indica una portada relativa a la carpeta de la máquina y `machineUrl` enlaza con su página en la plataforma. Las portadas del carrusel abren el write-up; la portada del artículo y el enlace «Ir a la máquina» abren `machineUrl`.
 
