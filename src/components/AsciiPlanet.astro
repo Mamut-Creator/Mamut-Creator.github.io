@@ -1,0 +1,17 @@
+<div class="ascii-planet" data-ascii-planet aria-hidden="true">
+  <pre class="ascii-fallback">           . : + + : .
+       . : +           + : .
+     : +     .-------.     + :
+   . +    .-' .-@@@-. '-.    + .
+   : :  &lt;    (@   @)    &gt;  : :
+   . +    '-. '-@@@-' .-'    + .
+     : +     '-------'     + :
+       ' : +           + : '
+           ' : + + : '</pre>
+  <canvas></canvas>
+</div>
+<script>
+import { mountAsciiPlanet } from '../lib/ascii-planet';
+const host=document.querySelector<HTMLElement>('[data-ascii-planet]');
+if(host)mountAsciiPlanet(host);
+</script>

@@ -9,3 +9,7 @@ Extraídas de los ZIP aportados en `fonts/`. Se distribuyen sin modificar junto 
 - Maple Mono: Copyright 2022 The Maple Mono Project Authors. Texto, títulos e interfaz. Variantes variable normal e italic.
 - JetBrains Mono: Copyright 2020 The JetBrains Mono Project Authors. Bloques de código y etiquetas técnicas. Variante variable normal.
 - WindSong: Copyright 2013 The WindSong Project Authors. Acentos manuscritos y marca. Variante Regular.
+
+## Decoración ASCII
+
+Interpretación procedural de un ojo sobre una esfera, inspirada en el motivo del ojo de Nmap. Referencia visual: https://nmap.org/images/. No incluye un archivo del logotipo ni implica afiliación con Nmap.
