@@ -17,7 +17,7 @@ demo: false
 
 Describe el alcance, los servicios y tus primeras hipótesis.
 
-```bash
+```bash {1}
 nmap -sC -sV <IP>
 ```
 

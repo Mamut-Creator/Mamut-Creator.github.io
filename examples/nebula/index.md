@@ -15,7 +15,7 @@ demo: true
 
 Esta entrada es una **plantilla ilustrativa**, no la resolución de una máquina real. Sustituye estas notas por tus hallazgos y explica qué te hizo elegir cada paso.
 
-```bash
+```bash {1}
 nmap -sC -sV <IP>
 ```
 
@@ -27,7 +27,7 @@ Documenta las rutas y funcionalidades que encontraste. Añade las capturas junto
 
 [![Captura ilustrativa de enumeración](./images/enumeracion.svg)](https://app.hackthebox.com/machines)
 
-```python
+```python {3-4}
 # Ejemplo de código con resaltado de sintaxis
 servicios = ["http", "ssh"]
 for servicio in servicios:
@@ -35,6 +35,8 @@ for servicio in servicios:
 ```
 
 ## Acceso inicial
+
+![Portada ilustrativa para probar la galería](./images/cover.svg)
 
 Explica el hallazgo, sus requisitos y cómo verificaste el acceso. Incluye también los intentos descartados si aportan contexto.
 

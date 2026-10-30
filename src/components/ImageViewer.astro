@@ -1,0 +1,37 @@
+<dialog class="image-viewer" aria-label="Visor de capturas">
+  <div class="viewer-toolbar"><span class="viewer-position" aria-live="polite"></span><div><button type="button" data-zoom aria-pressed="false">Ampliar</button><button type="button" data-close aria-label="Cerrar visor">Cerrar ×</button></div></div>
+  <div class="viewer-stage"><img class="viewer-image" alt=""/></div>
+  <div class="viewer-bottom"><button type="button" data-previous aria-label="Imagen anterior">←</button><p class="viewer-caption" aria-live="polite"></p><button type="button" data-next aria-label="Imagen siguiente">→</button></div>
+  <p class="viewer-error" role="status" hidden>No se pudo cargar la imagen.</p>
+</dialog>
+<script>
+const dialog=document.querySelector<HTMLDialogElement>('.image-viewer');
+if(dialog){
+ const images=[...document.querySelectorAll<HTMLImageElement>('.prose img')];
+ const picture=dialog.querySelector<HTMLImageElement>('.viewer-image')!;
+ const stage=dialog.querySelector<HTMLElement>('.viewer-stage')!;
+ const zoom=dialog.querySelector<HTMLButtonElement>('[data-zoom]')!;
+ const previous=dialog.querySelector<HTMLButtonElement>('[data-previous]')!;
+ const next=dialog.querySelector<HTMLButtonElement>('[data-next]')!;
+ const error=dialog.querySelector<HTMLElement>('.viewer-error')!;
+ let current=0,zoomed=false,opener:HTMLElement|null=null;
+ function setZoom(value:boolean){zoomed=value;zoom.setAttribute('aria-pressed',String(value));zoom.textContent=value?'Ajustar':'Ampliar';dialog.classList.toggle('is-zoomed',value);picture.style.width=value?`${Math.max(picture.naturalWidth,stage.clientWidth)}px`:'';stage.scrollTo(0,0)}
+ function show(index:number){current=index;setZoom(false);error.hidden=true;picture.src=images[index].currentSrc||images[index].src;picture.alt=images[index].alt;dialog.querySelector('.viewer-position')!.textContent=`${index+1} / ${images.length}`;dialog.querySelector('.viewer-caption')!.textContent=images[index].alt||`Captura ${index+1}`;previous.disabled=index===0;next.disabled=index===images.length-1;}
+ function open(index:number,button:HTMLElement){opener=button;show(index);dialog.showModal();document.documentElement.classList.add('viewer-open');}
+ images.forEach((image,index)=>{
+  const button=document.createElement('button');button.type='button';button.setAttribute('aria-label',`Ampliar imagen: ${image.alt||`captura ${index+1}`}`);
+  const linked=image.closest('a');
+  if(linked){button.className='image-expand-link';button.textContent='Ampliar captura ↗';linked.after(button);}
+  else{button.className='image-open';image.before(button);button.append(image);}
+  button.addEventListener('click',()=>open(index,button));
+ });
+ picture.addEventListener('error',()=>{error.hidden=false});
+ zoom.addEventListener('click',()=>setZoom(!zoomed));
+ previous.addEventListener('click',()=>{if(current>0)show(current-1)});
+ next.addEventListener('click',()=>{if(current<images.length-1)show(current+1)});
+ dialog.querySelector('[data-close]')!.addEventListener('click',()=>dialog.close());
+ dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+ dialog.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'&&current>0){event.preventDefault();show(current-1)}if(event.key==='ArrowRight'&&current<images.length-1){event.preventDefault();show(current+1)}});
+ dialog.addEventListener('close',()=>{document.documentElement.classList.remove('viewer-open');setZoom(false);opener?.focus()});
+}
+</script>

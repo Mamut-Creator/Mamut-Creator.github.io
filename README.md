@@ -8,7 +8,15 @@ Guarda todas las imágenes en la carpeta `images/` de la máquina. Inclúyelas c
 
 Escribe bloques con tres acentos graves seguidos del lenguaje (`bash`, `python`, `powershell`, `javascript`, `json` o `text` para salida de herramientas). Todos se muestran en una terminal visual con resaltado y botón Copiar. Se representan como documentación: no ejecutan los comandos. La búsqueda filtra nombre, plataforma, sistema y etiquetas; `/` enfoca el buscador.
 
-Usa `status: resuelta` para incluir la máquina en el carrusel, navegable con flechas, teclado y desplazamiento táctil. No tiene avance automático. `demo: true` identifica una entrada ficticia; cámbialo a `false` al publicar una resolución propia. Los enlaces actuales son los catálogos de las plataformas porque las máquinas de muestra son ficticias.
+Usa `status: resuelta` para incluir una máquina real en el carrusel, navegable con flechas, teclado y desplazamiento táctil. No tiene avance automático. Las máquinas ficticias se conservan en `examples/`, fuera de las páginas publicadas. El archivo muestra un estado vacío hasta que añadas contenido real. No se muestran estadísticas inventadas.
+
+## Imágenes y comandos
+
+Las imágenes sin enlace abren el visor al pulsarlas. Si la imagen tiene un enlace, conserva ese destino y aparece un botón independiente «Ampliar captura». El visor permite recorrer imágenes con las flechas o el teclado, ajustar/ampliar y cerrar con Escape. El texto alternativo sirve como pie de imagen. Al cerrar vuelves al punto del artículo donde estabas.
+
+Para destacar líneas, añade los números al lenguaje del bloque, por ejemplo `bash {2,4-6}`. Los números empiezan en 1. El botón Copiar conserva el código original, sin números ni etiquetas de formato. Consulta `examples/nebula/index.md` para ver ejemplos completos.
+
+Prueba del parser de líneas: `node --test tests/line-highlight.test.mjs` desde esta carpeta. Los archivos de `dist/` y `outputs/` se generan, no se versionan.
 
 Spotlight es el componente oficial de Aceternity, renderizado por React en el servidor. El diseño respeta movimiento reducido. Puedes iniciar el sitio tanto desde esta carpeta como desde la carpeta principal: `npm install` y `npm run dev`. Si PowerShell bloquea `npm.ps1`, usa `npm.cmd install` y `npm.cmd run dev`.
 
