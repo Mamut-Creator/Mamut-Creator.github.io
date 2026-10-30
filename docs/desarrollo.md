@@ -29,3 +29,9 @@ Las fuentes se sirven localmente desde `public/fonts/`: Maple Mono para texto e 
 El título usa `Typewriter.astro` y la animación se controla en `PageMotion.astro`, junto con las apariciones al desplazarse. El contenido sigue visible sin JavaScript. Si el visitante pide movimiento reducido, se muestra el texto completo y se desactivan las animaciones.
 
 El fondo utiliza columnas tenues de caracteres en cascada (`src/components/CodeRain.astro`). La animación es CSS, deja el centro más despejado para leer y reduce la cantidad de columnas en móvil. Se pausa al ocultar la pestaña y permanece estática con movimiento reducido. El espaciado de la portada y el tamaño del título están en `src/styles/hero.css`.
+
+## Móvil y Safari
+
+`src/styles/responsive.css` concentra los ajustes para pantallas pequeñas: tipografía, áreas táctiles, comandos con desplazamiento propio y visor centrado. La luz decorativa queda recortada en su contenedor para que no ensanche la página. El efecto de escritura revela caracteres sin depender de Web Animations; las entradas de contenido usan transiciones CSS y se restablecen al volver desde la caché de navegación.
+
+Las máscaras del fondo incluyen el prefijo de WebKit. La opción de movimiento reducido del sistema se respeta: en ese caso el título aparece completo y el fondo permanece estático. Las comprobaciones de tamaño en el navegador de escritorio no sustituyen la prueba en un dispositivo iOS real.
