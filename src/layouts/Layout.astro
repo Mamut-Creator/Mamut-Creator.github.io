@@ -1,0 +1,5 @@
+---
+import '../styles/global.css';
+const {title='Bitácora — Seguridad & aprendizaje',description='Notas de campo sobre máquinas y ciberseguridad.'}=Astro.props;
+---
+<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><title>{title}</title></head><body><header class="header shell"><a href="/" class="brand">b<span> / </span>bitácora</a><nav aria-label="Principal"><a href="/#archivo">Write-ups</a><a href="/acerca">Acerca</a></nav></header><main><slot/></main><footer class="shell"><span>Bitácora personal · 2026</span><span>Siempre aprendiendo.</span></footer></body></html>
