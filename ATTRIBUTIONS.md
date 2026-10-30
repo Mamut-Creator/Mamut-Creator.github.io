@@ -12,4 +12,4 @@ Extraídas de los ZIP aportados en `fonts/`. Se distribuyen sin modificar junto 
 
 ## Decoración ASCII
 
-Interpretación procedural de un ojo sobre una esfera, inspirada en el motivo del ojo de Nmap. Referencia visual: https://nmap.org/images/. No incluye un archivo del logotipo ni implica afiliación con Nmap.
+El ojo ASCII se genera a partir de la imagen del logotipo de Nmap aportada por el usuario (`public/images/nmap-eye-reference.png`). Solo se muestrea la zona del ojo, excluyendo las letras y el fondo exterior. Referencia del proyecto original: https://nmap.org/images/. No implica afiliación con Nmap.
