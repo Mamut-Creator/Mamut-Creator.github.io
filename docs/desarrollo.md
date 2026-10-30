@@ -34,4 +34,6 @@ El fondo utiliza columnas tenues de caracteres en cascada (`src/components/CodeR
 
 `src/styles/responsive.css` concentra los ajustes para pantallas pequeñas: tipografía, áreas táctiles, comandos con desplazamiento propio y visor centrado. La luz decorativa queda recortada en su contenedor para que no ensanche la página. El efecto de escritura revela caracteres sin depender de Web Animations; las entradas de contenido usan transiciones CSS y se restablecen al volver desde la caché de navegación.
 
-Las máscaras del fondo incluyen el prefijo de WebKit. La opción de movimiento reducido del sistema se respeta: en ese caso el título aparece completo y el fondo permanece estático. Las comprobaciones de tamaño en el navegador de escritorio no sustituyen la prueba en un dispositivo iOS real.
+Las máscaras del fondo incluyen el prefijo de WebKit. Por defecto se respeta el movimiento reducido del sistema. El botón del pie permite activar o pausar las animaciones explícitamente y recuerda esa elección en el navegador. Las animaciones de entrada esperan a que la página esté visible y no quedan bloqueadas si la carga de las fuentes se retrasa. Las comprobaciones de tamaño en el navegador de escritorio no sustituyen la prueba en un dispositivo iOS real.
+
+La luz se coloca en una capa del ancho de la pantalla con desvanecido vertical. Su contenedor no depende del tamaño del título ni de la caja de la cabecera, para evitar bordes rectangulares visibles.

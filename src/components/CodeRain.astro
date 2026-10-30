@@ -8,12 +8,13 @@ const streams=Array.from({length:22},(_,i)=>({text:(fragments[i%fragments.length
 .rain-stream{position:absolute;left:var(--x);top:-900px;white-space:pre;font:10px/21px 'JetBrains Mono',monospace;color:#aaa7bf;opacity:.17;-webkit-mask-image:linear-gradient(transparent,rgba(0,0,0,.25) 35%,#000 95%,transparent);mask-image:linear-gradient(transparent,rgba(0,0,0,.25) 35%,#000 95%,transparent);animation:code-fall var(--duration) linear var(--delay) infinite;will-change:transform}
 @keyframes code-fall{from{transform:translate3d(0,-20vh,0)}to{transform:translate3d(0,calc(100vh + 1400px),0)}}
 @media(max-width:700px){.rain-stream{font-size:9px;opacity:.12}.rain-stream:nth-child(2n){display:none}.code-rain{-webkit-mask-image:linear-gradient(90deg,#000,rgba(0,0,0,.08) 45%,#000);mask-image:linear-gradient(90deg,#000,rgba(0,0,0,.08) 45%,#000)}}
-@media(prefers-reduced-motion:reduce){.rain-stream{animation:none;transform:translateY(700px);opacity:.08;will-change:auto}}
+@media(prefers-reduced-motion:reduce){:global(html:not([data-motion="on"])) .rain-stream{animation:none;transform:translateY(700px);opacity:.08;will-change:auto}}
 :global(body){isolation:isolate}
 :global(body:before){z-index:-2}
 </style>
 <script>
+import { motionEnabled } from '../lib/motion-preference';
 const rain=document.querySelector<HTMLElement>('.code-rain');
-function pauseRain(){rain?.querySelectorAll<HTMLElement>('.rain-stream').forEach(stream=>stream.style.animationPlayState=document.hidden?'paused':'running')}
-document.addEventListener('visibilitychange',pauseRain);window.addEventListener('pageshow',pauseRain);pauseRain();
+function pauseRain(){rain?.querySelectorAll<HTMLElement>('.rain-stream').forEach(stream=>stream.style.animationPlayState=document.hidden||!motionEnabled()?'paused':'running')}
+window.addEventListener('bitacora:motionchange',pauseRain);document.addEventListener('visibilitychange',pauseRain);window.addEventListener('pageshow',pauseRain);pauseRain();
 </script>

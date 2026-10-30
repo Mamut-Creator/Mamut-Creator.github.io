@@ -1,0 +1,21 @@
+<button class="motion-toggle" type="button" data-motion-toggle hidden>Animaciones</button>
+<script>
+import { resolveMotion } from '../lib/motion-mode.mjs';
+const button=document.querySelector<HTMLButtonElement>('[data-motion-toggle]');
+if(button){
+ const preference=matchMedia('(prefers-reduced-motion: reduce)');
+ let choice:string|null=null;
+ try{const stored=localStorage.getItem('bitacora-motion');choice=stored==='on'||stored==='off'?stored:null}catch{}
+ function sync(){
+  const enabled=resolveMotion(choice,preference.matches);
+  document.documentElement.dataset.motion=enabled?'on':'off';
+  button!.textContent=enabled?'Pausar animaciones':'Activar animaciones';
+  button!.setAttribute('aria-pressed',String(enabled));button!.hidden=false;
+  window.dispatchEvent(new Event('bitacora:motionchange'));
+ }
+ button.addEventListener('click',()=>{choice=document.documentElement.dataset.motion==='on'?'off':'on';try{localStorage.setItem('bitacora-motion',choice)}catch{}sync()});
+ if(preference.addEventListener)preference.addEventListener('change',()=>{if(!choice)sync()});
+ else preference.addListener(()=>{if(!choice)sync()});
+ sync();
+}
+</script>

@@ -1,8 +1,9 @@
 <script>
-const preference=matchMedia('(prefers-reduced-motion: reduce)');
+import { motionEnabled } from '../lib/motion-preference';
 const blocks=[...document.querySelectorAll<HTMLElement>('[data-typewriter]')];
 const timers=new Set<number>();
 let observer:IntersectionObserver|undefined;
+let pendingEntry=true;
 function finish(){
  timers.forEach(timer=>clearTimeout(timer));timers.clear();observer?.disconnect();
  blocks.forEach(block=>{block.classList.remove('is-typing');block.querySelector('.is-current')?.classList.remove('is-current')});
@@ -13,7 +14,7 @@ function type(block:HTMLElement){
  chars.forEach(char=>char.classList.remove('is-visible','is-current'));
  block.classList.add('is-typing');let index=0;
  const next=()=>{
-  if(preference.matches||document.hidden){finish();return;}
+  if(!motionEnabled()||document.hidden){pendingEntry=true;finish();return;}
   block.querySelector('.is-current')?.classList.remove('is-current');
   if(index>=chars.length){block.classList.remove('is-typing');return;}
   chars[index++].classList.add('is-visible','is-current');
@@ -21,7 +22,8 @@ function type(block:HTMLElement){
  };next();
 }
 function start(){
- finish();if(preference.matches)return;
+ finish();if(!motionEnabled()||document.hidden){pendingEntry=true;return;}
+ pendingEntry=false;
  blocks.forEach(type);
  const nodes=[...document.querySelectorAll<HTMLElement>('.solved-heading,.machine-card,.archive-top,.entry,.article-heading,.reading-layout,.about,.hero .lead,.hero .explore')];
  if(!('IntersectionObserver' in window))return;
@@ -31,12 +33,12 @@ function start(){
  nodes.forEach((node,index)=>{node.classList.remove('is-revealed');node.classList.add('reveal-ready');node.style.setProperty('--reveal-delay',`${node.classList.contains('machine-card')?index%3*50:0}ms`)});
  // Safari necesita un estado inicial calculado antes de iniciar la transición.
  if(nodes.length)void nodes[0].offsetWidth;
- requestAnimationFrame(()=>{if(!preference.matches)nodes.forEach(node=>observer?.observe(node))});
+ requestAnimationFrame(()=>{if(motionEnabled())nodes.forEach(node=>observer?.observe(node))});
 }
 const ready=document.fonts?.ready||Promise.resolve();
-ready.then(start);
-if(preference.addEventListener)preference.addEventListener('change',start);
-else preference.addListener(start);
+Promise.race([ready,new Promise<void>(resolve=>window.setTimeout(resolve,500))]).then(()=>{if(pendingEntry)start()});
+window.addEventListener('bitacora:motionchange',start);
+document.addEventListener('visibilitychange',()=>{if(document.hidden){pendingEntry=true;finish()}else if(pendingEntry)start()});
 window.addEventListener('pagehide',finish);
 window.addEventListener('pageshow',event=>{if(event.persisted)start()});
 </script>
