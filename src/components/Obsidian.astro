@@ -1,0 +1,11 @@
+<div class="obsidian" data-obsidian aria-hidden="true">
+  <div class="crystal-aura"></div>
+  <svg class="crystal-fallback" viewBox="0 0 400 400" fill="none"><defs><linearGradient id="crystal-face" x1="100" y1="70" x2="290" y2="330"><stop stop-color="#55506f"/><stop offset="1" stop-color="#101019"/></linearGradient></defs><path d="M200 65 300 150 274 285 200 335 114 275 98 153Z" fill="url(#crystal-face)" stroke="#79738f"/><path d="m200 65-42 130 142-45-100 185-42-140-44 80m44-80 116 90M98 153l60 42" stroke="#8d839e" stroke-opacity=".6"/><ellipse cx="200" cy="210" rx="155" ry="64" transform="rotate(-32 200 210)" stroke="#83799b" stroke-opacity=".35"/></svg>
+  <canvas class="crystal-canvas"></canvas>
+</div>
+<script>
+const host=document.querySelector<HTMLElement>('[data-obsidian]');
+if(host){
+ const boot=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){boot.disconnect();import('../lib/obsidian').then(({mountObsidian})=>mountObsidian(host)).catch(()=>{/* La silueta permanece visible si WebGL no está disponible. */})}},{rootMargin:'100px'});boot.observe(host);
+}
+</script>

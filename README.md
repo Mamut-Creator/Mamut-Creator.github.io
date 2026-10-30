@@ -17,3 +17,5 @@ Spotlight es el componente oficial de Aceternity, renderizado por React en el se
 Las fuentes se sirven localmente desde `public/fonts/`: Maple Mono para texto e interfaz, JetBrains Mono para código y WindSong para cursiva. Sus licencias están en la misma carpeta. Los estilos están en `src/styles/motion.css`.
 
 El título usa `Typewriter.astro` y la animación se controla en `PageMotion.astro`, junto con las apariciones al desplazarse. El contenido sigue visible sin JavaScript. Si el visitante pide movimiento reducido, se muestra el texto completo y se desactivan las animaciones.
+
+La decoración de la portada usa Three.js y se carga por separado cuando entra en pantalla. `src/lib/obsidian.ts` controla la geometría, luces, movimiento y recursos; `src/styles/obsidian.css` controla tamaño y posición. La escena limita la densidad de píxeles y la frecuencia de dibujo, se pausa fuera de pantalla o al ocultar la pestaña, y permanece estática con movimiento reducido. Sin WebGL se conserva una silueta SVG. La geometría es procedural: no requiere modelos externos.
