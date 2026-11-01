@@ -10,6 +10,7 @@ status: resuelta
 demo: false
 # Guarda la portada en images/ y descomenta:
 # cover: images/cover.png
+# icon: images/logo.png
 # machineUrl: https://app.hackthebox.com/machines/ENLACE-REAL
 ---
 

@@ -40,6 +40,10 @@ La luz se coloca en una capa del ancho de la pantalla con desvanecido vertical. 
 
 ## Lectura de artículos largos
 
+El campo opcional `icon: images/logo.png` permite usar el logo limpio junto al título (84 px en escritorio, 64 px en móvil), separado de `cover`, que sigue siendo la portada de las tarjetas. No hace falta repetir el logo dentro del artículo. Para una portada horizontal dentro del Markdown usa `![Portada de la máquina](./images/portada.webp "portada")`: queda centrada, con un ancho máximo de 400 px, sin afectar al tamaño de las capturas.
+
+`ArticleIndex.astro` marca la sección actual con `aria-current="location"` y actualiza el fragmento de la URL al desplazarse mediante `history.replaceState`, conservando los parámetros de consulta y sin llenar el historial. Los enlaces del índice mantienen el salto nativo a sus encabezados.
+
 Los artículos usan texto de 18 px en escritorio y 17 px en móvil, con mayor contraste y terminales de 15 y 14 px respectivamente. Estos ajustes están en `responsive.css`. El índice lateral permite desplazamiento propio si supera la altura de la ventana.
 
 No apliques animaciones de aparición a `.reading-layout` ni a `.prose`: un artículo largo puede no alcanzar el porcentaje visible que espera un observador y transformar su contenedor afecta al índice sticky. `PageMotion.astro` anima elementos pequeños y encabezados de sección; el contenido ya alcanzado queda visible al restaurar la pestaña. La barra flotante de desarrollo de Astro está desactivada mediante `devToolbar.enabled` en `astro.config.mjs`.
