@@ -18,16 +18,10 @@ src/content/writeups/
     index.md              # Artículo real y sus metadatos
     images/               # Capturas y portada de esa máquina
 templates/maquina/        # Plantilla reutilizable; conservar
-examples/                 # Máquinas FICTICIAS; fuera del sitio publicado
-  nebula/
-  cipher/
-  archive/
 docs/                     # Guías técnicas y de mantenimiento
 ```
 
-**La carpeta de los ejemplos es `examples/`, en la raíz de este repositorio** (desde la carpeta principal del workspace: `bitacora-writeups/examples/`). Está versionada en GitHub, pero Astro no la incluye en la web. No son máquinas resueltas por Jorge y no deben presentarse como tales.
-
-Jorge quiere eliminar esos ejemplos después de escribir el primer write-up real. Consérvalos hasta entonces. Al completar ese primer artículo, retira `examples/` y actualiza las referencias a sus archivos en la documentación. Conserva `templates/maquina/`, las pruebas y los artículos reales. Antes de eliminar recursivamente, verifica que la ruta absoluta corresponde exactamente a la carpeta `examples` de este repositorio. No copies ejemplos al contenido publicado; si los usas temporalmente para comprobar el diseño, retíralos antes del build final y del commit.
+Los ejemplos ficticios de Nebula, Cipher y Archive se retiraron de `examples/` al publicar el primer write-up real, Nexus, por petición de Jorge. No los restaures ni los publiques como máquinas resueltas. La referencia para crear entradas es `templates/maquina/`; conserva esa plantilla, las pruebas y los artículos reales.
 
 ## Añadir un write-up
 
