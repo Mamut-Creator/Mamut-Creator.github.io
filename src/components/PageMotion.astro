@@ -25,12 +25,21 @@ function start(){
  finish();if(!motionEnabled()||document.hidden){pendingEntry=true;return;}
  pendingEntry=false;
  blocks.forEach(type);
- const nodes=[...document.querySelectorAll<HTMLElement>('.solved-heading,.machine-card,.archive-top,.entry,.article-heading,.reading-layout,.about,.hero .lead,.hero .explore')];
+ // Never hide or transform a complete article: long blocks may never reach
+ // an intersection ratio, and transformed parents break sticky navigation.
+ const nodes=[...document.querySelectorAll<HTMLElement>('.solved-heading,.machine-card,.archive-top,.entry,.article-heading,.about h1,.hero .lead,.hero .explore,.prose h2')];
  if(!('IntersectionObserver' in window))return;
  observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
   if(entry.isIntersecting){entry.target.classList.add('is-revealed');observer?.unobserve(entry.target)}
- }),{threshold:.05});
- nodes.forEach((node,index)=>{node.classList.remove('is-revealed');node.classList.add('reveal-ready');node.style.setProperty('--reveal-delay',`${node.classList.contains('machine-card')?index%3*50:0}ms`)});
+ }),{threshold:0,rootMargin:'0px 0px -24px 0px'});
+ nodes.forEach((node,index)=>{
+  // Content already reached by the reader stays visible, including on a
+  // restored tab or a direct visit to an article anchor.
+  const reached=node.getBoundingClientRect().top<window.innerHeight-24;
+  node.classList.toggle('is-revealed',reached);
+  node.classList.add('reveal-ready');
+  node.style.setProperty('--reveal-delay',`${node.classList.contains('machine-card')?index%3*50:0}ms`);
+ });
  // Safari necesita un estado inicial calculado antes de iniciar la transición.
  if(nodes.length)void nodes[0].offsetWidth;
  requestAnimationFrame(()=>{if(motionEnabled())nodes.forEach(node=>observer?.observe(node))});

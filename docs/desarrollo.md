@@ -37,3 +37,9 @@ El fondo utiliza columnas tenues de caracteres en cascada (`src/components/CodeR
 Las máscaras del fondo incluyen el prefijo de WebKit. Por defecto se respeta el movimiento reducido del sistema. El botón del pie permite activar o pausar las animaciones explícitamente y recuerda esa elección en el navegador. Las animaciones de entrada esperan a que la página esté visible y no quedan bloqueadas si la carga de las fuentes se retrasa. Las comprobaciones de tamaño en el navegador de escritorio no sustituyen la prueba en un dispositivo iOS real.
 
 La luz se coloca en una capa del ancho de la pantalla con desvanecido vertical. Su contenedor no depende del tamaño del título ni de la caja de la cabecera, para evitar bordes rectangulares visibles.
+
+## Lectura de artículos largos
+
+Los artículos usan texto de 18 px en escritorio y 17 px en móvil, con mayor contraste y terminales de 15 y 14 px respectivamente. Estos ajustes están en `responsive.css`. El índice lateral permite desplazamiento propio si supera la altura de la ventana.
+
+No apliques animaciones de aparición a `.reading-layout` ni a `.prose`: un artículo largo puede no alcanzar el porcentaje visible que espera un observador y transformar su contenedor afecta al índice sticky. `PageMotion.astro` anima elementos pequeños y encabezados de sección; el contenido ya alcanzado queda visible al restaurar la pestaña. La barra flotante de desarrollo de Astro está desactivada mediante `devToolbar.enabled` en `astro.config.mjs`.
