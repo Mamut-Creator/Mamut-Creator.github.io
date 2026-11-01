@@ -1,0 +1,27 @@
+<div class="reading-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden>
+  <span></span>
+</div>
+<script>
+import { readingProgress } from '../lib/reading-progress.mjs';
+const content=document.getElementById('contenido');
+const progress=document.querySelector<HTMLElement>('.reading-progress');
+if(content&&progress){
+ const bar=progress.querySelector<HTMLElement>('span')!;
+ let scheduled=false;
+ function update(){
+  scheduled=false;
+  const rect=content!.getBoundingClientRect();
+  const value=readingProgress(rect.top,rect.height,innerHeight);
+  bar.style.transform=`scaleX(${value})`;
+  progress!.setAttribute('aria-valuenow',String(Math.round(value*100)));
+  progress!.hidden=false;
+ }
+ function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(update)}}
+ window.addEventListener('scroll',schedule,{passive:true});
+ window.addEventListener('resize',schedule,{passive:true});
+ window.addEventListener('pageshow',schedule);
+ // Lazy images and fonts may change the length of the article after load.
+ if('ResizeObserver' in window)new ResizeObserver(schedule).observe(content);
+ update();
+}
+</script>

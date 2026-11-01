@@ -40,6 +40,12 @@ La luz se coloca en una capa del ancho de la pantalla con desvanecido vertical. 
 
 ## Lectura de artículos largos
 
+`accents.css` define el acento verde lima compartido por enlaces, controles, índice activo y cabeceras de terminal. Las dificultades mantienen texto además de color: Fácil en verde, Media en ámbar y Difícil en coral. Los párrafos siguen alineados a la izquierda.
+
+`ReadingProgress.astro` muestra una barra fija de 3 px solo en los artículos. Calcula el progreso desde el inicio del contenido hasta que su final alcanza la ventana, limita el resultado entre 0 y 100 y lo recalcula al cambiar el tamaño del artículo (incluidas las imágenes de carga diferida). Funciona independientemente de las animaciones decorativas.
+
+Las animaciones están activas por defecto en escritorio y móvil, salvo movimiento reducido del sistema o una pausa guardada por el visitante. No hay bloqueo por ancho de pantalla. La cascada tiene velocidades variadas y mayor contraste en la portada; recibe `subtle` en las rutas de write-ups para reducir su presencia durante la lectura. El botón del pie conserva su función de pausar y activar.
+
 El campo opcional `icon: images/logo.png` permite usar el logo limpio junto al título (84 px en escritorio, 64 px en móvil), separado de `cover`. Las tarjetas muestran el icono centrado sobre un degradado metálico gris azulado con un reflejo verde tenue; el archivo muestra solo el icono circular, sin panel. Si no se define `icon`, esas vistas usan un símbolo del sistema operativo. No hace falta repetir el logo dentro del artículo. Para una portada horizontal dentro del Markdown usa `![Portada de la máquina](./images/portada.webp "portada")`: queda centrada, con un ancho máximo de 400 px, sin afectar al tamaño de las capturas.
 
 `ArticleIndex.astro` marca la sección actual con `aria-current="location"` y actualiza el fragmento de la URL al desplazarse mediante `history.replaceState`, conservando los parámetros de consulta y sin llenar el historial. Los enlaces del índice mantienen el salto nativo a sus encabezados.

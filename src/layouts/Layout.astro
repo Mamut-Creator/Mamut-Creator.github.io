@@ -7,6 +7,7 @@ import '../styles/hero.css';
 import '../styles/reader.css';
 import '../styles/responsive.css';
 import '../styles/typography.css';
+import '../styles/accents.css';
 import CodeRain from '../components/CodeRain.astro';
 import PageMotion from '../components/PageMotion.astro';
 import ClientActions from '../components/ClientActions.astro';
@@ -15,4 +16,4 @@ import { Spotlight } from '../components/ui/spotlight';
 import { site } from '../lib/site';
 const {title=`${site.author} — ${site.name}`,description=site.description}=Astro.props;
 ---
-<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="author" content={site.author}/><link rel="preload" href={withBase('/fonts/MapleMono-Variable.woff2')} as="font" type="font/woff2" crossorigin/><link rel="preload" href={withBase('/fonts/WindSong-Regular.ttf')} as="font" type="font/ttf" crossorigin/><title>{title}</title></head><body><CodeRain/>{Astro.url.pathname === withBase('/') && <div class="ambient-light" aria-hidden="true"><Spotlight className="spotlight" fill="#b4b9d6"/></div>}<header class="header shell"><a href={withBase('/')} class="brand">bitácora<span class="brand-owner">{site.author}</span></a><nav aria-label="Principal"><a href={withBase('/#archivo')}>Write-ups</a><a href={withBase('/acerca/')}>Acerca</a></nav></header><main><slot/></main><footer class="shell"><span>{site.author} · Bitácora · 2026</span><span>Siempre aprendiendo.</span><MotionToggle/></footer><ClientActions/><PageMotion/></body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="author" content={site.author}/><link rel="preload" href={withBase('/fonts/MapleMono-Variable.woff2')} as="font" type="font/woff2" crossorigin/><link rel="preload" href={withBase('/fonts/WindSong-Regular.ttf')} as="font" type="font/ttf" crossorigin/><title>{title}</title></head><body><CodeRain subtle={Astro.url.pathname.startsWith(withBase('/writeups/'))}/>{Astro.url.pathname === withBase('/') && <div class="ambient-light" aria-hidden="true"><Spotlight className="spotlight" fill="#b4b9d6"/></div>}<header class="header shell"><a href={withBase('/')} class="brand">bitácora<span class="brand-owner">{site.author}</span></a><nav aria-label="Principal"><a href={withBase('/#archivo')}>Write-ups</a><a href={withBase('/acerca/')}>Acerca</a></nav></header><main><slot/></main><footer class="shell"><span>{site.author} · Bitácora · 2026</span><span>Siempre aprendiendo.</span><MotionToggle/></footer><ClientActions/><PageMotion/></body></html>
