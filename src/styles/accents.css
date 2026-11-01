@@ -19,4 +19,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline-color:var(--acc
 .reading-progress{position:fixed;inset:0 0 auto;height:3px;z-index:20;pointer-events:none;background:#b0d96a0a}
 .reading-progress>span{display:block;width:100%;height:100%;background:linear-gradient(90deg,#6d9b43,var(--accent));transform:scaleX(0);transform-origin:left;box-shadow:0 0 8px #b0d96a33}
 .article .prose{text-align:left}
+.prose img{
+ box-shadow:0 0 0 1px #b0d96a50,0 0 18px -6px #b0d96a30;
+ transition:box-shadow 180ms ease,filter 180ms ease;
+}
+.prose .image-open:hover img,.prose .image-open:focus-visible img,.prose a:hover img,.prose a:focus-visible img{
+ box-shadow:0 0 0 1px #b0d96a99,0 0 24px -5px #b0d96a55;
+}
+.viewer-image{box-shadow:0 0 0 1px #b0d96a50}
 @media(hover:none){.copy-code:active,.slider-controls button:not(:disabled):active,.motion-toggle:active,.explore:active{color:var(--accent);border-color:var(--accent-border)}}
